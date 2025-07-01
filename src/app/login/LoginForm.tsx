@@ -1,12 +1,12 @@
 'use client';
 
 import { useActionState, useEffect } from 'react';
-import { useFormStatus } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Button, Typography, Box } from '@mui/material';
 import { loginUser } from '../actions/login/auth-actions';
 import CustomTextField from '@/components/CustomTextField';
+import SubmitButton from '@/components/SubmitButton';
+import { Typography, Box, Divider } from '@mui/material';
 
 type FormState = {
   error: string | null;
@@ -17,21 +17,6 @@ type FormState = {
 const initialState: FormState = {
   error: null,
 };
-
-function SubmitButton() {
-    const { pending } = useFormStatus();
-    return (
-        <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary" 
-            fullWidth
-            disabled={pending}
-        >
-            {pending ? 'Logging in...' : 'Login'}
-        </Button>
-    );
-}
 
 export default function LoginForm() {
     const [state, formAction] = useActionState<FormState, FormData>(
@@ -48,6 +33,7 @@ export default function LoginForm() {
 
     return (
         <form action={formAction}>
+            <Divider sx={{ mb: 2 }}>Please enter your login credentials</Divider>
             <CustomTextField
                 label="Username"
                 placeholder="Username"
@@ -68,7 +54,7 @@ export default function LoginForm() {
                 </Typography>
             </Link>
             <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                <SubmitButton />
+                <SubmitButton label="Login" loadingLabel="Logging in..." />
             </Box>
             {state?.error && (
                 <Typography color="error" variant="body2" sx={{ mt: 1, textAlign: 'center' }}>

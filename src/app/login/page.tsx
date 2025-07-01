@@ -1,4 +1,6 @@
-import LoginForm from './login-form';
+'use client'
+
+import LoginForm from './LoginForm';
 
 export const dynamic = 'force-dynamic';
 

@@ -7,7 +7,7 @@ import { TextFieldProps } from '@mui/material';
 
 interface CustomTextFieldProps {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   name: string;
   type?: string;
   required?: boolean;
@@ -35,7 +35,7 @@ const CustomTextField = ({
       name={name}
       id={name}
       label={label}
-      placeholder={placeholder || ''}
+      placeholder={placeholder || label}
       margin="dense"
       slotProps={{
         input: {

@@ -1,12 +1,12 @@
-import { Card, Divider, Typography } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 
-export default function PublicLayout({ title, children }: { title: string; children: React.ReactNode }) {
+export default function PublicLayout({ maxWidth = 360, title, children }: { maxWidth?: number; title: string; children: React.ReactNode }) {
     return (
         <div>
             <main>
                 <Card
                     sx={{
-                        maxWidth: 360,
+                        maxWidth: maxWidth,
                         margin: 'auto',
                         marginTop: 4,
                         display: 'flex',
@@ -19,7 +19,6 @@ export default function PublicLayout({ title, children }: { title: string; child
                     <Typography variant="h5" component="h2">
                         {title}
                     </Typography>
-                    <Divider />
                     {children}
                 </Card>
             </main>
